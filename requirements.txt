@@ -1,4 +1,4 @@
-Django==5.0.8
+Django==6
 PyMySQL==1.1.1
 pydantic==2.8.2
 arcade==2.6.17
