@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Главная — GameForge{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div class="hero__left">
+      <h1>GameForge</h1>
+      <p class="muted">
+        No-code платформа: создавай сцены, объекты и ассеты в Editor — запускай в Runtime на Arcade.
+      </p>
+      <div class="row gap">
+        {% if user %}
+          <a class="btn btn--primary" href="{% url 'projects' %}">Мои проекты</a>
+        {% else %}
+          <button class="btn btn--primary" data-modal-target="#authModal">Войти / Регистрация</button>
+        {% endif %}
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="card">
+        <div class="strong">Границы модулей</div>
+        <ul class="muted">
+          <li>Editor = создание данных (DSL)</li>
+          <li>Runtime = исполнение данных</li>
+          <li>Связь только через формат проекта</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+{% endblock %}

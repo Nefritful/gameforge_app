@@ -1,0 +1,42 @@
+<div class="modal" id="authModal" aria-hidden="true">
+  <div class="modal__backdrop" data-modal-close></div>
+  <div class="modal__panel" role="dialog" aria-modal="true">
+    <div class="modal__header">
+      <button class="btn btn--ghost btn--small modal__back" data-auth-back style="display:none;">← Вернуться</button>
+      <div class="modal__title" data-auth-title>Вход</div>
+      <button class="btn btn--ghost btn--small" data-modal-close>✕</button>
+    </div>
+
+    <div class="modal__body">
+      <form class="form stack" id="loginForm">
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input class="input" type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span class="field__label">Пароль</span>
+          <input class="input" type="password" name="password" autocomplete="current-password" required>
+        </label>
+        <button class="btn btn--primary" type="submit">Войти</button>
+        <div class="muted small">
+          Нет аккаунта?
+          <a href="#" class="link" data-auth-switch="register">Регистрация</a>
+        </div>
+        <div class="alert alert--error" style="display:none;" data-auth-error></div>
+      </form>
+
+      <form class="form stack" id="registerForm" style="display:none;">
+        <label class="field">
+          <span class="field__label">Email</span>
+          <input class="input" type="email" name="email" autocomplete="email" required>
+        </label>
+        <label class="field">
+          <span class="field__label">Пароль</span>
+          <input class="input" type="password" name="password" autocomplete="new-password" required>
+        </label>
+        <button class="btn btn--primary" type="submit">Зарегистрироваться</button>
+        <div class="alert alert--error" style="display:none;" data-auth-error></div>
+      </form>
+    </div>
+  </div>
+</div>

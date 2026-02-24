@@ -1,0 +1,24 @@
+<header class="topbar">
+  <div class="container topbar__row">
+    <a class="brand" href="{% url 'home' %}">
+      <span class="brand__name">GameForge</span>
+      <span class="brand__tag">No-code games</span>
+    </a>
+
+    <nav class="menu">
+      <a class="menu__link" href="{% url 'home' %}">Главная</a>
+      {% if user %}
+        <a class="menu__link" href="{% url 'projects' %}">Проекты</a>
+      {% endif %}
+    </nav>
+
+    <div class="topbar__right">
+      {% if user %}
+        <span class="chip">{{ user.email }}</span>
+        <a class="btn btn--ghost btn--small" href="{% url 'logout_get' %}">Выйти</a>
+      {% else %}
+        <button class="btn btn--primary btn--small" data-modal-target="#authModal">Войти</button>
+      {% endif %}
+    </div>
+  </div>
+</header>

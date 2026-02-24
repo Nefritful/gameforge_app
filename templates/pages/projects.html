@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Проекты — GameForge{% endblock %}
+{% block content %}
+  <div class="row between center">
+    <h1>Проекты</h1>
+    <a class="btn btn--ghost" href="{% url 'home' %}">На главную</a>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <div class="strong">Новый проект</div>
+      <form class="form stack" method="post">
+        {% csrf_token %}
+        <label class="field">
+          <span class="field__label">Название</span>
+          <input class="input" name="name" placeholder="project1" required>
+        </label>
+        <label class="field">
+          <span class="field__label">Описание</span>
+          <input class="input" name="description" placeholder="Коротко о проекте">
+        </label>
+        <button class="btn btn--primary" type="submit">Создать</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="strong">Мои проекты</div>
+      {% if projects %}
+        <div class="list">
+          {% for p in projects %}
+            <a class="list__item" href="{% url 'project_editor' p.id %}">
+              <div>
+                <div class="strong">{{ p.name }}</div>
+                <div class="muted small">{{ p.description|default:"—" }}</div>
+              </div>
+              <div class="muted small">{{ p.created_at }}</div>
+            </a>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="muted">Проектов пока нет.</div>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

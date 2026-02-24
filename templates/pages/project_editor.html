@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}{{ project.name }} — Editor{% endblock %}
+{% block content %}
+<div class="editor">
+  <div class="editor__top row between center">
+    <div class="row center gap">
+      <a class="btn btn--ghost btn--small" href="{% url 'projects' %}">← Проекты</a>
+      <div class="strong">{{ project.name }}</div>
+      <div class="muted small">id={{ project.id }}</div>
+    </div>
+
+    <div class="row center gap">
+      <select class="select" id="sceneSelect">
+        {% for s in scenes %}
+          <option value="{{ s }}">{{ s }}</option>
+        {% endfor %}
+      </select>
+      <button class="btn btn--ghost btn--small" id="createSceneBtn">+ Сцена</button>
+      <button class="btn btn--primary btn--small" id="saveSceneBtn">Сохранить</button>
+    </div>
+  </div>
+
+  <div class="editor__body">
+    <!-- LEFT: Scene tree -->
+    <aside class="panel panel--left">
+      <div class="panel__title">Сцена</div>
+      <div class="tree" id="sceneTree"></div>
+      <button class="btn btn--ghost btn--small" id="addFromTreeBtn">+ Объект</button>
+    </aside>
+
+    <!-- CENTER: Visual editor -->
+    <section class="panel panel--center">
+      <div class="panel__title">Визуальный редактор</div>
+      <div class="canvas" id="canvas" tabindex="0">
+        <div class="canvas__hint muted small">ПКМ по сцене → создать объект (Pawn/Object/Area/Ui)</div>
+        <div class="canvas__stage" id="stage"></div>
+      </div>
+
+      <!-- FILE TREE BELOW CENTER -->
+      <div class="files">
+        <div class="files__title">Файлы проекта</div>
+        <div class="files__tree" id="filesTree"></div>
+      </div>
+    </section>
+
+    <!-- RIGHT: Properties -->
+    <aside class="panel panel--right">
+      <div class="panel__title">Свойства</div>
+      <div class="props" id="propsPanel">
+        <div class="muted">Выбери объект на сцене.</div>
+      </div>
+    </aside>
+  </div>
+</div>
+
+<script>
+  window.GF = {
+    projectId: {{ project.id }},
+    csrfToken: "{{ csrf_token }}",
+  };
+</script>
+{% endblock %}
